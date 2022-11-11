@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: Documentation for Services used in CPV-MDH
+  version: "1.0"
+  description: API to provide varient service for the CPV-MDH.
+paths:
+  /:
+    get:
+      operationId: endpoints.api_ping.get
+      description: Check if server is up and running.
+      tags:
+        - Utility
+      responses:
+        "200":
+          description: Return message in JSON format
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PingOutput"
+
+
+components:
+  schemas:
+    PingOutput:
+      type: object
+      properties:
+        data:
+          type: array
+servers:
+  - url: /services/v1

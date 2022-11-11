@@ -1,0 +1,19 @@
+version: '3'
+services: 
+  jnj-python:
+    container_name: jnj-python
+    build: ./
+    restart: unless-stopped
+    environment: 
+      - APPLICATION_HOST=http://localhost
+      - API_PG_HOST=demo.mareana.com
+      - API_PG_PORT=5432
+      - API_PG_DB=qsim_INT
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=prince@#$$
+      - LOGS=/app/logs/
+    ports:
+      - 9091:9091
+    command: '--reload --bind=0.0.0.0:9091 --workers=4 --timeout=3600 app:app'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
